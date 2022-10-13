@@ -1,0 +1,6 @@
+32400 plex
+8080 qbittorrent
+6881 tcp&udp qbittorrent
+7878 radarr
+8989 sonarr
+9117 jackett
