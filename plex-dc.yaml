@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    ports:
+      - 32400:32400
+    container_name: plex
+    network_mode: bridge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=DOCKER
+      - PLEX_CLAIM=claim-GwcqdygvyJMC7sASez9R
+    volumes:
+      - /plex/library:/config
+      - /plex/tvseries:/tv
+      - /plex/movies:/movies
+    restart: unless-stopped
