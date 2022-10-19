@@ -1,0 +1,71 @@
+version: "2.1"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    ports:
+      - 32400:32400
+    container_name: plex
+    network_mode: bridge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=DOCKER
+      - PLEX_CLAIM=claim-GwcqdygvyJMC7sASez9R
+    volumes:
+      - /plex/library:/config
+      - /plex/tvseries:/tv
+      - /plex/movies:/movies
+    restart: unless-stopped
+    -----------------------
+    
+version: "2.1"
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+     - PUID=1000
+     - PGID=1000
+     - WEBUI_PORT=8080
+    volumes:
+     - /qbittorrent/config:/config
+     - /qbittorrent/downloads:/downloads
+    ports:
+     - 8080:8080
+     - 6881:6881
+     - 6881:6881/udp
+    restart: unless-stopped
+    -----------------------
+    
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+     - PUID=1000
+     - PGID=1000
+    volumes:
+     - /radarr/data:/config
+     - /plex/movies:/movies
+     - /qbittorrent/downloads:/downloads
+    ports:
+     - 7878:7878
+    restart: unless-stopped
+    -----------------------
+    
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+     - /sonarr/data:/config
+     - /plex/tvseries:/tv
+     - /qbittorrent/downloads:/downloads
+    ports:
+     - 8989:8989
+    restart: unless-stopped
