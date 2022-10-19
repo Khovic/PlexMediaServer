@@ -16,7 +16,7 @@ services:
       - /plex/tvseries:/tv
       - /plex/movies:/movies
     restart: unless-stopped
-    -----------------------
+---
     
 version: "2.1"
 services:
@@ -35,7 +35,7 @@ services:
      - 6881:6881
      - 6881:6881/udp
     restart: unless-stopped
-    -----------------------
+---
     
 version: "2.1"
 services:
@@ -52,7 +52,7 @@ services:
     ports:
      - 7878:7878
     restart: unless-stopped
-    -----------------------
+---
     
 version: "2.1"
 services:
@@ -69,7 +69,7 @@ services:
     ports:
      - 8989:8989
     restart: unless-stopped
-    ------------------------
+---
     
 version: "2.1"
 services:
