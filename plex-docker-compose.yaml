@@ -74,3 +74,13 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
+  
+  
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+    - "80:80"
+    volumes:
+    - /usr/:/usr/share/nginx/
+
